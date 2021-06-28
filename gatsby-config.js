@@ -18,10 +18,6 @@ module.exports = {
          * Example : 'https://www.example-site.com/graphql'
          */
         url: `https://shariat.info/dev/graphql`,
-        schema: {
-          //Prefixes all WP Types with "Wp" so "Post and allPost" become "WpPost and allWpPost".
-          typePrefix: `Wp`,
-        },
       },
     },
     `gatsby-plugin-react-helmet`,
