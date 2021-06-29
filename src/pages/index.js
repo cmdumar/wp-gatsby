@@ -25,7 +25,7 @@ const HomePage = ({ data }) => {
     return (
         <Layout>
             <SEO title="Home" />
-            <img src={bg} alt="Background" />
+            <img src={bg} style={{ width: '100%' }} alt="Background" />
             <div dangerouslySetInnerHTML={{ __html: content }} />
         </Layout>
     )

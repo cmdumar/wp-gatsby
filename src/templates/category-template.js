@@ -15,7 +15,7 @@ export const pageQuery = graphql`
             }
         }
     }
-`
+`;
 
 const CategoryTemplate = ({ data }) => {
     const title = data.wpCategory.name;
