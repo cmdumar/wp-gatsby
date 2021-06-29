@@ -13,15 +13,26 @@ export const pageQuery = graphql`
                 content
                 }
             }
+            header {
+                featuredImage {
+                  sourceUrl
+                  altText
+                }
+            }
         }
     }
 `;
 
 const CategoryTemplate = ({ data }) => {
     const title = data.wpCategory.name;
+    const bg = data.wpCategory.header.featuredImage;
+
+
+    console.log('Bg', bg);
 
     return <>
         <h1 dangerouslySetInnerHTML={{ __html: title }} />
+        <img src={bg.sourceUrl} alt={bg.altText} />
     </>
 }
 
