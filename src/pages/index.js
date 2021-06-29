@@ -21,8 +21,6 @@ export const query = graphql`
 const HomePage = ({ data }) => {
     const content = data.wpPage.content;
     const bg = data.wpPage.featuredImage.node.sourceUrl;
-    console.log('data', data);
-    console.log('img', bg);
 
     return (
         <Layout>
