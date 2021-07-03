@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import Layout from '../components/layout';
 
 export const pageQuery = graphql`
     query CategoryByID($id: String!) {
@@ -36,23 +37,25 @@ const CategoryTemplate = ({ data }) => {
     const posts = data.wpCategory.posts.nodes;
 
     return <>
-        <h1 dangerouslySetInnerHTML={{ __html: title }} />
-        <img src={bg.sourceUrl} alt={bg.altText} />
-        <div>
-            {posts.map(post => (
-                <div key={post.id} style={{ border: "1px solid black", padding: "30px", margin: "10px" }}>
-                    <h1 dangerouslySetInnerHTML={{ __html: post.title }} />
-                    <audio
-                        controls
-                        preload="none"
-                        src={post.bayanDetails.audio.mediaItemUrl}>
-                            Your browser does not support the
-                            <code>audio</code> element.
-                    </audio>
-                    <p>{post.bayanDetails.date} | {post.bayanDetails.duration}</p>
-                </div>
-            ))}
-        </div>
+        <Layout>
+            <h1 dangerouslySetInnerHTML={{ __html: title }} />
+            <img src={bg.sourceUrl} alt={bg.altText} />
+            <div>
+                {posts.map(post => (
+                    <div key={post.id} style={{ border: "1px solid black", padding: "30px", margin: "10px" }}>
+                        <h1 dangerouslySetInnerHTML={{ __html: post.title }} />
+                        <audio
+                            controls
+                            preload="none"
+                            src={post.bayanDetails.audio.mediaItemUrl}>
+                                Your browser does not support the
+                                <code>audio</code> element.
+                        </audio>
+                        <p>{post.bayanDetails.date} | {post.bayanDetails.duration}</p>
+                    </div>
+                ))}
+            </div>
+        </Layout>
     </>
 }
 
