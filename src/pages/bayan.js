@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
+import { VStack, Button, Center } from "@chakra-ui/react"
+import Layout from '../components/layout';
+
 
 export const categories = graphql`
   query {
@@ -16,14 +19,23 @@ export const categories = graphql`
 const BayanPage = ({ data }) => {
     const nodes = data.allWpCategory.nodes;
 
-    console.log('Node', nodes)
-
-    return <>
-        <h1>Bayans</h1>
-        {nodes.map(node => (
-            <Link key={node.id} to={node.uri} dangerouslySetInnerHTML={{ __html: node.name}} />
-        ))}
-    </>
+    return <Layout>
+      <h1>Bayans</h1>
+      <Center bg="#c5d289" width="100%">
+        <VStack
+          spacing={4}
+          align="center"
+        >
+          {nodes.map(node => ( 
+            <Link key={node.id} to={node.uri}>
+              <Button colorScheme="gray" size="md">
+                {node.name}
+              </Button>
+            </Link>
+          ))}
+        </VStack>
+      </Center>
+    </Layout>
 }
 
 export default BayanPage;

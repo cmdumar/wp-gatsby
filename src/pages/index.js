@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '../components/layout';
-import SEO from '../components/seo';
+import Seo from '../components/seo';
 import { graphql } from "gatsby"
 
 export const query = graphql`
@@ -24,7 +24,7 @@ const HomePage = ({ data }) => {
 
     return (
         <Layout>
-            <SEO title="Home" />
+            <Seo title="Home" />
             <img src={bg} style={{ width: '100%' }} alt="Background" />
             <div dangerouslySetInnerHTML={{ __html: content }} />
         </Layout>
