@@ -21,9 +21,9 @@ const BayanPage = ({ data }) => {
 
     return <Layout>
       <h1>Bayans</h1>
-      <Center bg="#c5d289" width="100%">
+      <Center bg="#c5d289" width="100%" p="40">
         <VStack
-          spacing={4}
+          spacing={8}
           align="center"
         >
           {nodes.map(node => ( 
