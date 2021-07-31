@@ -35,7 +35,8 @@ const HomePage = ({ data }) => {
                 bg="twitter.400"
                 textAlign="center"
                 color="white"
-                py="30"
+                pt="20"
+                pb="40"
                 dangerouslySetInnerHTML={{ __html: content }}
             />
         </Layout>
