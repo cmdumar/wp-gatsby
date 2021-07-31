@@ -1,7 +1,10 @@
 import React from 'react';
 import Layout from '../components/layout';
-import SEO from '../components/seo';
-import { graphql } from "gatsby"
+import Seo from '../components/seo';
+import { Image } from '@chakra-ui/image';
+import { graphql } from "gatsby";
+import { Box } from '@chakra-ui/react';
+import '../styles/home.css';
 
 export const query = graphql`
     query {
@@ -20,15 +23,23 @@ export const query = graphql`
 
 const HomePage = ({ data }) => {
     const content = data.wpPage.content;
-    const bg = data.wpPage.featuredImage.node.sourceUrl;
-
+    const bg = data?.wpPage?.featuredImage?.node.sourceUrl;
+    
+    console.log('WP-Page', data.wpPage);
+    console.log('Content', content);
     return (
         <Layout>
-            <SEO title="Home" />
-            <img src={bg} alt="Background" />
-            <div dangerouslySetInnerHTML={{ __html: content }} />
+            <Seo title="Home" />
+            <Image src={bg} objectFit="cover" width="full" height="60vh" alt="Background" />
+            <Box
+                bg="twitter.400"
+                textAlign="center"
+                color="white"
+                py="30"
+                dangerouslySetInnerHTML={{ __html: content }}
+            />
         </Layout>
-    )
+    );
 }
 
 export default HomePage;

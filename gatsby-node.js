@@ -1,12 +1,29 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/node-apis/
- */
+exports.createPages = async gatsbyUtilities => {
+    const categories = await getCategories(gatsbyUtilities);
 
-// You can delete this file if you're not using it
-exports.createPages = async ({ actions, graphql }) => {
-    const result = await graphql(`
+    if(!categories.length) {
+        return;
+    }
+
+    await createIndiviualCategoryPages({ categories, gatsbyUtilities })
+}
+
+const createIndiviualCategoryPages = async ({ categories, gatsbyUtilities }) => 
+    Promise.all(
+        categories.map(category => 
+            gatsbyUtilities.actions.createPage({
+                path: category.uri,
+                component: require.resolve('./src/templates/category-template.js'),
+                context: {
+                    id: category.id
+                },
+            })
+        )
+    )
+
+
+const getCategories = async ({ graphql, reporter }) => {
+    const graphqlResult = await graphql(`
         query WpCategories {
             allWpCategory {
                 nodes {
@@ -17,17 +34,13 @@ exports.createPages = async ({ actions, graphql }) => {
         }
     `);
 
-    console.log('result', result);
+    if (graphqlResult.errors) {
+        reporter.panicOnBuild(
+          `There was an error loading your blog posts`,
+          graphqlResult.errors
+        )
+        return;
+    }
 
-    const categories = result.data.allWpCategory.nodes;
-
-    categories.forEach(node => {
-        actions.createPage({
-            path: node.uri,
-            component: require.resolve('./src/templates/category-template.js'),
-            context: {
-                id: node.id
-            },
-        })
-    });
+    return graphqlResult.data.allWpCategory.nodes;
 }
