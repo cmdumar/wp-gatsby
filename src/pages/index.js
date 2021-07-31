@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '../components/layout';
 import Seo from '../components/seo';
 import { Image } from '@chakra-ui/image';
-import { graphql } from "gatsby";
+import { graphql } from 'gatsby';
 import { Box } from '@chakra-ui/react';
 import '../styles/home.css';
 
@@ -24,9 +24,7 @@ export const query = graphql`
 const HomePage = ({ data }) => {
     const content = data.wpPage.content;
     const bg = data?.wpPage?.featuredImage?.node.sourceUrl;
-    
-    // console.log('WP-Page', data.wpPage);
-    // console.log('Content', content);
+
     return (
         <Layout>
             <Seo title="Home" />

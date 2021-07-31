@@ -41,16 +41,34 @@ const BayanPage = ({ data }) => {
           color="green.900"
           textShadow="1px 1px 0 #57ff64"
           size="3xl"
-        >Bayan</Heading>
+        >
+          Bayan
+        </Heading>
       </Box>
-      <Center bg="#c5d289" width="100%" p="40">
+      <Center
+        bg="#c5d289"
+        width="100%"
+        py="20"
+      >
         <VStack
           spacing={8}
           align="center"
         >
           {nodes.map(node => ( 
             <Link key={node.id} to={node.uri}>
-              <Button colorScheme="gray" size="md">
+              <Button
+                bg="#748c4e69"
+                color="white"
+                textShadow="1px 1px 0 #230a0a"
+                colorScheme="green"
+                fontWeight="bold"
+                px="20"
+                maxWidth="222px"
+                width="full"
+                boxShadow="0 4px 8px 2px rgb(0 0 0 / 35%)"
+                size="md"
+                textTransform="uppercase"
+              >
                 {node.name}
               </Button>
             </Link>
@@ -58,6 +76,6 @@ const BayanPage = ({ data }) => {
         </VStack>
       </Center>
     </Layout>
-}
+};
 
 export default BayanPage;
