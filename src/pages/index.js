@@ -25,8 +25,8 @@ const HomePage = ({ data }) => {
     const content = data.wpPage.content;
     const bg = data?.wpPage?.featuredImage?.node.sourceUrl;
     
-    console.log('WP-Page', data.wpPage);
-    console.log('Content', content);
+    // console.log('WP-Page', data.wpPage);
+    // console.log('Content', content);
     return (
         <Layout>
             <Seo title="Home" />
