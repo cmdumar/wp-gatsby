@@ -11,6 +11,7 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
 import "./layout.css"
+import { Box } from "@chakra-ui/react"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -27,15 +28,17 @@ const Layout = ({ children }) => {
     <>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <main>{children}</main>
-      <footer
-        style={{
-          marginTop: `2rem`,
-        }}
+      <Box
+        as="footer"
+        bg="gray.800"
+        color="white"
+        py="30"
+        textAlign="center"
       >
         © {new Date().getFullYear()}
         {` `}
-        <a href="https://www.gatsbyjs.com">Shariat.info</a>
-      </footer>
+        Shariat.info
+      </Box>
     </>
   )
 }

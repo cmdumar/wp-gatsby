@@ -1,32 +1,35 @@
-import * as React from "react"
-import PropTypes from "prop-types"
-import { Link } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
+import * as React from "react";
+import PropTypes from "prop-types";
+import { Link } from "gatsby";
+import Menu from "./menu";
+import logo from '../images/logo.png';
+import { Box, Image } from "@chakra-ui/react";
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `transparent`,
-      marginBottom: `1.45rem`,
-    }}
+const Header = () => (
+  <Box
+    as="header"
+    display="flex"
+    alignItems="center"
+    justifyContent="space-between"
+    px="20"
+    py="4"
   >
     <Link
-        to="/"
+      to="/"
+      style={{
+        display: 'inline-block',
+      }}
+    >
+      <Image
+        src={logo}
+        alt="Shariat.info Logo"
         style={{
-          color: `black`,
-          textDecoration: `none`,
+          width: 'calc(25vw - 25px)',
         }}
-      >
-      <StaticImage
-        src="../images/logo.png"
-        quality={95}
-        width={500}
-        formats={["AUTO", "WEBP", "AVIF"]}
-        alt="A Gatsby astronaut"
-        style={{ marginBottom: `1.45rem` }}
       />
     </Link>
-  </header>
+    <Menu />
+  </Box>
 );
 
 Header.propTypes = {
