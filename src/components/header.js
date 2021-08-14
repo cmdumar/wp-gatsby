@@ -2,8 +2,8 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
 import Menu from "./menu";
-import { StaticImage } from "gatsby-plugin-image";
-import { Box } from "@chakra-ui/react";
+import logo from '../images/logo.png';
+import { Box, Image } from "@chakra-ui/react";
 
 const Header = () => (
   <Box
@@ -17,15 +17,12 @@ const Header = () => (
     <Link
       to="/"
       style={{
-        padding: 'auto 10px',
         display: 'inline-block',
       }}
     >
-      <StaticImage
-        src="../images/logo.png"
-        quality={100}
-        formats={["AUTO", "WEBP", "AVIF"]}
-        alt="Site Logo"
+      <Image
+        src={logo}
+        alt="Shariat.info Logo"
         style={{
           width: 'calc(25vw - 25px)',
         }}

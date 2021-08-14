@@ -1,38 +1,39 @@
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
-  <a href="https://www.gatsbyjs.com">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
+  <a href="https://www.shariat.info">
+    <img alt="Gatsby" src="src/images/logo.png" width="250" />
   </a>
 </p>
 <h1 align="center">
-  Gatsby's default starter
+  Shariat.info App
 </h1>
 
-Kick off your project with this default boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
+This application has been made with Gatsby, Chakra-UI, WordPress.
 
-_Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.com/docs/gatsby-starters/)._
+_Shariat.info has dedicated to the lectures, books and media of Haji Shakeel Ahmad Saheb Damat Barakatuhum._
 
 ## 🚀 Quick start
 
-1.  **Create a Gatsby site.**
-
-    Use the Gatsby CLI to create a new site, specifying the default starter.
-
+1.  **Clone the Repo**
     ```shell
-    # create a new Gatsby site using the default starter
-    gatsby new my-default-starter https://github.com/gatsbyjs/gatsby-starter-default
+    # Clone using Git
+    git clone https://github.com/mohammadumar28/wp-gatsby.git
     ```
 
-1.  **Start developing.**
+1.  **Install the App**
 
     Navigate into your new site’s directory and start it up.
 
     ```shell
-    cd my-default-starter/
-    gatsby develop
+    cd wp-gatsby/
+    npm install
     ```
 
-1.  **Open the source code and start editing!**
+1.  **Run the App**
+
+    ```shell
+    npm run develop
+    ```
 
     Your site is now running at `http://localhost:8000`!
 
