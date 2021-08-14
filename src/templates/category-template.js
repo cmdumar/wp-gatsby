@@ -25,6 +25,9 @@ export const pageQuery = graphql`
                 }
             }
             header {
+                backgroundColor
+                buttonColor
+                headingColor
                 featuredImage {
                   sourceUrl
                   altText
@@ -36,6 +39,9 @@ export const pageQuery = graphql`
 
 const CategoryTemplate = ({ data }) => {
     const title = data.wpCategory.name;
+    const headingColor = data.wpCategory.header.headingColor;
+    const buttonColor = data.wpCategory.header.buttonColor;
+    const backgroundColor = data.wpCategory.header.backgroundColor;
     const bg = data.wpCategory.header.featuredImage;
     const posts = data.wpCategory.posts.nodes;
 
@@ -59,8 +65,8 @@ const CategoryTemplate = ({ data }) => {
                     left="0"
                     right="0"
                     textAlign="center"
-                    color="green.900"
-                    textShadow="1px 1px 0 #57ff64"
+                    color={headingColor}
+                    textShadow={`1px 1px 0 #57ff64`}
                     size="3xl"
                     dangerouslySetInnerHTML={{ __html: title }}
                 />
