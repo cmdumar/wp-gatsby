@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    Image, Heading, Box
+    Image, Heading, Text, Box, Button, Container, SimpleGrid
   } from "@chakra-ui/react";
 import { graphql } from 'gatsby';
 import Layout from '../components/layout';
@@ -24,10 +24,11 @@ export const pageQuery = graphql`
                     }
                 }
             }
-            header {
+            BayansPage {
                 backgroundColor
                 buttonColor
                 headingColor
+                cardBg
                 featuredImage {
                   sourceUrl
                   altText
@@ -38,18 +39,20 @@ export const pageQuery = graphql`
 `;
 
 const CategoryTemplate = ({ data }) => {
+    console.log('data', data);
     const title = data.wpCategory.name;
-    const headingColor = data.wpCategory.header.headingColor;
-    const buttonColor = data.wpCategory.header.buttonColor;
-    const backgroundColor = data.wpCategory.header.backgroundColor;
-    const bg = data.wpCategory.header.featuredImage;
+    const headingColor = data.wpCategory.BayansPage.headingColor;
+    const buttonColor = data.wpCategory.BayansPage.buttonColor;
+    const backgroundColor = data.wpCategory.BayansPage.backgroundColor;
+    const cardBg = data.wpCategory.BayansPage.cardBg;
+    const bg = data.wpCategory.BayansPage.featuredImage;
     const posts = data.wpCategory.posts.nodes;
 
     return <>
         <Layout>
             <Box
                 width="full"
-                position="relative"  
+                position="relative"
             >
                 <Image
                     src={bg.sourceUrl}
@@ -66,26 +69,50 @@ const CategoryTemplate = ({ data }) => {
                     right="0"
                     textAlign="center"
                     color={headingColor}
-                    textShadow={`1px 1px 0 #57ff64`}
+                    textShadow={`1px 1px 0 ${cardBg}`}
                     size="3xl"
                     dangerouslySetInnerHTML={{ __html: title }}
                 />
             </Box>
-            <div>
-                {posts.map(post => (
-                    <div key={post.id} style={{ border: "1px solid black", padding: "30px", margin: "10px" }}>
-                        <h1 dangerouslySetInnerHTML={{ __html: post.title }} />
-                        <audio
-                            controls
-                            preload="none"
-                            src={post.bayanDetails.audio.mediaItemUrl}>
-                                Your browser does not support the
-                                <code>audio</code> element.
-                        </audio>
-                        <p>{post.bayanDetails.date} | {post.bayanDetails.duration}</p>
-                    </div>
-                ))}
-            </div>
+            <Container bg={backgroundColor} maxWidth="full">
+                <SimpleGrid
+                    minChildWidth="350px"
+                    spacing="16px"
+                    padding="4"
+                    as="section"
+                >
+                    {posts.map(post => (
+                        <Box
+                            key={post.id}
+                            bg={cardBg}
+                            borderRadius="md"
+                            padding="14px"
+                        >
+                            <Heading
+                                fontSize="md"
+                                mb="4"
+                                as="h3"
+                                dangerouslySetInnerHTML={{ __html: post.title }}
+                            />
+                            <audio
+                                style={{
+                                    marginBottom: '1em',
+                                    width: '100%',
+                                }}
+                                controls
+                                preload="none"
+                                src={post.bayanDetails.audio.mediaItemUrl}>
+                                    Your browser does not support the
+                                    <code>audio</code> element.
+                            </audio>
+                            <Text fontSize="sm" mb="4">
+                                {post.bayanDetails.date} | {post.bayanDetails.duration}
+                            </Text>
+                            <Button bg={buttonColor} color="white">Download</Button>
+                        </Box>
+                    ))}
+                </SimpleGrid>
+            </Container>
         </Layout>
     </>
 }
