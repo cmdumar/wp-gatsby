@@ -18,16 +18,18 @@ export const pageQuery = graphql`
                     bayanDetails {
                         date
                         duration
-                        audio {
-                        mediaItemUrl
-                        }
+                        audio
                     }
                 }
             }
-            header {
+            BayansPage {
+                backgroundColor
+                buttonColor
+                cardBg
+                headingColor
                 featuredImage {
-                  sourceUrl
-                  altText
+                    sourceUrl
+                    altText
                 }
             }
         }
@@ -36,7 +38,7 @@ export const pageQuery = graphql`
 
 const CategoryTemplate = ({ data }) => {
     const title = data.wpCategory.name;
-    const bg = data.wpCategory.header.featuredImage;
+    const bg = data.wpCategory.BayansPage.featuredImage;
     const posts = data.wpCategory.posts.nodes;
 
     return <>
@@ -72,7 +74,7 @@ const CategoryTemplate = ({ data }) => {
                         <audio
                             controls
                             preload="none"
-                            src={post.bayanDetails.audio.mediaItemUrl}>
+                            src={post.bayanDetails.audio}>
                                 Your browser does not support the
                                 <code>audio</code> element.
                         </audio>
