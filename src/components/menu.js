@@ -29,6 +29,13 @@ const Menu = () => (
     >
       Posters
     </Link>
+    <Link
+      href="/category/short-clips/"
+      px="4"
+      fontSize="lg"
+    >
+      Short clips
+    </Link>
   </Box>
 );
 
