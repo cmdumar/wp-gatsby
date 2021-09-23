@@ -6,7 +6,7 @@ import {
 
 const Menu = () => (
   <Box
-    as="navbar"
+    as="nav"
   >
     <Link
       href="/"

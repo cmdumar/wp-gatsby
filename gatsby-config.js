@@ -20,8 +20,8 @@ module.exports = {
          * The full URL of the WordPress site's GraphQL API.
          * Example : 'https://www.example-site.com/graphql'
          */
-        url: `http://shariatinfo.local/graphql`,
-        protocol: `http`,
+        url: `https://dev.shariat.info/graphql`,
+        protocol: `https`,
         hostingWPCOM: false,
         useACF: true,
       },

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    Image, Heading, Box, Text, SimpleGrid, AspectRatio,
+    Image, Heading, Box, Text, SimpleGrid, AspectRatio, Button,
   } from "@chakra-ui/react";
 import { graphql } from 'gatsby';
 import Layout from '../components/layout';
@@ -30,6 +30,7 @@ export const pageQuery = graphql`
                 buttonColor
                 cardBg
                 headingColor
+                textShadow
                 featuredImage {
                     sourceUrl
                     altText
@@ -40,24 +41,31 @@ export const pageQuery = graphql`
 `;
 
 const CategoryTemplate = ({ data }) => {
-    const title = data.wpCategory.name;
-    const categoryID = data.wpCategory.id;
-    const bg = data.wpCategory.BayansPage.featuredImage;
-    const posts = data.wpCategory.posts.nodes;
+    const { wpCategory } = data;
+    const title = wpCategory.name;
+    const categoryID = wpCategory.id;
+    const {
+        featuredImage,
+        buttonColor,
+        cardBg,
+        headingColor,
+        backgroundColor,
+        textShadow,
+    } = wpCategory.BayansPage;
+    const posts = wpCategory.posts.nodes;
 
     return <>
-        <Layout>
+        <Layout bg={backgroundColor}>
             <Box
                 width="full"
                 position="relative"  
             >
                 <Image
-                    src={bg.sourceUrl}
-                    alt={bg.altText}
+                    src={featuredImage.sourceUrl}
+                    alt={featuredImage.altText}
                     objectFit="cover"
                     width="full"
                     height="60vh"
-                    alt="Background"
                 />
                 <Heading
                     position="absolute"
@@ -65,25 +73,25 @@ const CategoryTemplate = ({ data }) => {
                     left="0"
                     right="0"
                     textAlign="center"
-                    color="green.900"
-                    textShadow="1px 1px 0 #57ff64"
+                    color={headingColor}
+                    textShadow={`1px 1px 0 ${textShadow}`}
                     size="3xl"
                     dangerouslySetInnerHTML={{ __html: title }}
                 />
             </Box>
 
-            {categoryID != 'dGVybTo0Mg==' ?
-                <SimpleGrid columns={[2, null, 3]} my="10" mx="4" spacing="10px">
+            {categoryID !== 'dGVybTo0Mg==' ?
+                <SimpleGrid columns={{ sm: 2, md: 3, lg: 4 }} my="10" mx="4" spacing="10px">
                     {posts.map(post => (
                         <Box
                             maxW="sm"
-                            borderWidth="1px"
                             borderRadius="lg"
                             overflow="hidden"
                             p="4"
+                            bg={cardBg}
                             key={post.id}
                         >
-                            <Heading size="h3" dangerouslySetInnerHTML={{ __html: post.title }} />
+                            <Heading size="h3" mb="3" dangerouslySetInnerHTML={{ __html: post.title }} />
                             <audio
                                 style={{
                                     width: '100%'
@@ -94,33 +102,42 @@ const CategoryTemplate = ({ data }) => {
                                     Your browser does not support the
                                     <code>audio</code> element.
                             </audio>
-                            <Text fontSize="sm">{post.bayanDetails.date} | {post.bayanDetails.duration}</Text>
+                            <Text fontSize="sm" my="3">{post.bayanDetails.date} | {post.bayanDetails.duration}</Text>
+                            <Button
+                                as="a"
+                                href={post.bayanDetails.audio}
+                                bg={buttonColor}
+                                borderRadius="md"
+                                px="6"
+                            >
+                                Download
+                            </Button>
                         </Box>
                     ))}
                 </SimpleGrid> :
 
-                <SimpleGrid my="10" mx="4" columns={2} spacing="10px">
+                <SimpleGrid my="10" mx="4" columns={{ sm: 2, md: 3, lg: 4 }} spacing="10px">
                     {posts.map(post => (
                         <Box
                             maxW="lg"
-                            borderWidth="1px"
-                            borderRadius="lg"
                             overflow="hidden"
                             p="4"
                             key={post.id}
                         >
-                            <Heading size="h3" dangerouslySetInnerHTML={{ __html: post.title }} />
+                            <Heading size="h3" mb="3" dangerouslySetInnerHTML={{ __html: post.title }} />
                             <AspectRatio maxW="full" ratio={16 / 9}>
                                 <iframe
                                     title={post.title}
                                     src={`https://www.youtube.com/embed/${post.shortClip.embedid}`}
                                     allowFullScreen
-                                    allow="accelerometer;
+                                    allow="
+                                        accelerometer;
                                         autoplay;
                                         clipboard-write;
                                         encrypted-media;
                                         gyroscope;
-                                        picture-in-picture"
+                                        picture-in-picture
+                                    "
                                 />
                             </AspectRatio>
                         </Box>
