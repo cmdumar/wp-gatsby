@@ -20,10 +20,10 @@ export const categories = graphql`
 const BayanPage = ({ data }) => {
     const nodes = data.allWpCategory.nodes;
 
-    return <Layout>
+    return <Layout bg="#c5d289">
       <Box
         width="full"
-        position="relative"  
+        position="relative"
       >
         <Image
           src="https://media.giphy.com/media/AlqUdr1CSODLO/giphy.gif"
@@ -46,7 +46,6 @@ const BayanPage = ({ data }) => {
         </Heading>
       </Box>
       <Center
-        bg="#c5d289"
         width="100%"
         py="20"
       >

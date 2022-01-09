@@ -6,7 +6,7 @@ import {
 
 const Menu = () => (
   <Box
-    as="navbar"
+    as="nav"
   >
     <Link
       href="/"
@@ -28,6 +28,13 @@ const Menu = () => (
       fontSize="lg"
     >
       Posters
+    </Link>
+    <Link
+      href="/category/short-clips/"
+      px="4"
+      fontSize="lg"
+    >
+      Short clips
     </Link>
   </Box>
 );

@@ -11,9 +11,9 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
 import "./layout.css"
-import { Box } from "@chakra-ui/react"
+import { Box, Container } from "@chakra-ui/react"
 
-const Layout = ({ children }) => {
+const Layout = ({ children, bg }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -27,7 +27,9 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <main>{children}</main>
+      <Container bg={bg} width="full" maxW="full" px="0" pb="4">
+        {children}
+      </Container>
       <Box
         as="footer"
         bg="gray.800"
@@ -41,10 +43,15 @@ const Layout = ({ children }) => {
       </Box>
     </>
   )
-}
+};
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-}
+  bg: PropTypes.string,
+};
+
+Layout.defaultProps = {
+  bg: "#ffffff",
+};
 
 export default Layout
